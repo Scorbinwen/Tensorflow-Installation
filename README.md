@@ -1,6 +1,6 @@
 # Tensorflow-Installation
 
-# install CUDA Toolkit v8.0
+# install CUDA Toolkit v8.0(It has already been install on the Server Computer,you can skip this step.)
 # instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))
 CUDA_REPO_PKG="cuda-repo-ubuntu1604_8.0.61-1_amd64.deb"
 wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/${CUDA_REPO_PKG}
@@ -37,3 +37,18 @@ conda create -n tensorflow-gpu python=3.6
 source activate tensorflow-gpu
 
 conda install tensorflow-gpu
+
+# update the pip source
+source activate tensorflow-gpu
+mkdir .pip
+vim .pip/pip.conf
+copy source below to .pip/pip.conf:
+"
+[global]
+index-url = http://mirrors.aliyun.com/pypi/simple/
+[install]
+trusted-host = mirrors.aliyun.com
+"
+apt-get update
+then you can install the libs you need using pip install xxx(e.g. pip install opencv-python)
+
