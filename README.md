@@ -27,7 +27,7 @@ or just use command below to download anaconda3:
 wget https://repo.continuum.io/archive/Anaconda3-2.4.0-Linux-x86_64.sh
 # install anaconda
 dash Anaconda3-2.4.0-Linux-x86_64.sh
-follow the prompt...
+
 
 # download and install tensorflow-gpu
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
