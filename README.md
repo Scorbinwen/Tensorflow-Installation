@@ -26,7 +26,7 @@ select an compatible version of anaconda from "https://repo.continuum.io/archive
 or just use command below to download anaconda3:
 wget https://repo.continuum.io/archive/Anaconda3-2.4.0-Linux-x86_64.sh
 # install anaconda
-dash Anaconda3-2.4.0-Linux-x86_64.sh
+bash Anaconda3-2.4.0-Linux-x86_64.sh
 
 
 # download and install tensorflow-gpu
