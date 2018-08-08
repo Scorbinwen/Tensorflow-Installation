@@ -65,19 +65,20 @@ apt-get update
 Problems you may encounter:   
 After you pip install opencv-python,you may still fail to import cv2:   
 $python   
->>> import cv2    
+>>>import cv2    
 Traceback (most recent call last):  
   File "<stdin>", line 1, in <module>   
   File "/root/anaconda3/envs/tensorflow-gpu/lib/python3.5/site-packages/cv2/__init__.py", line 3, in <module>   
     from .cv2 import *    
 ImportError: libgthread-2.0.so.0: cannot open shared object file: No such file or directory   
-Solve the problem above using commanc as follow:    
+  
+### Solve the problem above using commanc as follow:    
 $apt-get update   
 $apt-get -y upgrade     
 $pip install opencv-python    
 $apt-get install libgtk2.0-dev -y   
 
-### nvidia-smi to monitor the usage of GPUs to see which processes that occupy the GPUs:  
+### use command "nvidia-smi" to monitor the usage of GPUs to see which processes that occupy the GPUs:  
 fuser -v /dev/nvidia*  
 this command may fail:   
 $ fuser command not found  
