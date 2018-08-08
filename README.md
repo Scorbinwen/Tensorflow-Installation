@@ -3,9 +3,7 @@
 # install CUDA Toolkit v8.0(It has already been install on the Server Computer,you can skip this step.) 
 # instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network)) 
 CUDA_REPO_PKG="cuda-repo-ubuntu1604_8.0.61-1_amd64.deb" 
-
 wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/${CUDA_REPO_PKG} 
-
 dpkg -i ${CUDA_REPO_PKG}  
 apt-get update  
 apt-get -y install cuda 
