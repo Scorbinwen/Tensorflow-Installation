@@ -8,7 +8,7 @@ dpkg -i ${CUDA_REPO_PKG}
 apt-get update    
 apt-get -y install cuda   
 
-## install cuDNN v6.0  
+## Step1. install cuDNN v6.0  
 CUDNN_TAR_FILE="cudnn-8.0-linux-x64-v6.0.tgz"   
 wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/${CUDNN_TAR_FILE}   
 tar -xzvf ${CUDNN_TAR_FILE}   
@@ -16,20 +16,20 @@ cp -P cuda/include/cudnn.h /usr/local/cuda-8.0/include
 cp -P cuda/lib64/libcudnn* /usr/local/cuda-8.0/lib64/   
 chmod a+r /usr/local/cuda-8.0/lib64/libcudnn*   
 
-## set environment variables   
+## Step2. set environment variables   
 ### add the 2 paths below to ~/.bashrc:   
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}    
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}    
 
-## download and install anaconda   
+## Step3. download and install anaconda   
 ### select an compatible version of anaconda from "https://repo.continuum.io/archive/" or just use command below to download anaconda3:     
 wget https://repo.continuum.io/archive/Anaconda3-2.4.0-Linux-x86_64.sh    
 
-## install anaconda    
+## Step4. install anaconda    
 bash Anaconda3-2.4.0-Linux-x86_64.sh    
 
 **Notice:   
-Approve the licence at last.    
+Approve the licence at last:     
 Do you approve the license terms? [yes|no]    
 [no] >>> yes**       
 
@@ -38,7 +38,7 @@ $ export PATH=/root/anaconda3/bin:$PATH
 
 
 
-## download and install tensorflow-gpu   
+## Step5. download and install tensorflow-gpu   
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/    
 conda config --set show_channel_urls yes    
   
@@ -49,7 +49,7 @@ source activate tensorflow-gpu
 **Notice:the command below may fail,just try more times.**        
 conda install tensorflow-gpu    
 
-## update the pip source   
+## Step6. update the pip source   
 source activate tensorflow-gpu    
 mkdir .pip    
 vim .pip/pip.conf   
@@ -72,15 +72,15 @@ Traceback (most recent call last):
     from .cv2 import *    
 ImportError: libgthread-2.0.so.0: cannot open shared object file: No such file or directory   
   
-### Solve the problem above using commanc as follow:    
-$apt-get update   
-$apt-get -y upgrade     
-$pip install opencv-python    
-$apt-get install libgtk2.0-dev -y   
+### Solve the problem above using command as follow:    
+apt-get update   
+apt-get -y upgrade     
+pip install opencv-python    
+apt-get install libgtk2.0-dev -y   
 
-### use command "nvidia-smi" to monitor the usage of GPUs to see which processes that occupy the GPUs:  
+## PS: use command "nvidia-smi" to monitor the usage of GPUs to see which processes that occupy the GPUs:  
 fuser -v /dev/nvidia*  
 this command may fail:   
-$ fuser command not found  
+$fuser command not found  
 ### install the psmisc which contains command fuser:  
 apt-get install psmisc  
