@@ -84,3 +84,6 @@ this command may fail:
 $fuser command not found  
 ### install the psmisc which contains command fuser:  
 apt-get install psmisc  
+
+## Show tensorboard on your local machine
+reference link[https://blog.csdn.net/bryant_meng/article/details/79153531]
