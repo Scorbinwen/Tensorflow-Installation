@@ -1,5 +1,12 @@
-# Tensorflow-Installation
+# Tutorial on logining the docker instance
+## Build your own docker instance
+## Go to the GPU-management platform http://station.csgrandeur.com/gpu/faqs    
+## Step1.Register your own account using the inviting-code provided by @LiuNing
+## Step2.
 
+
+
+# Tensorflow-Installation
 ## Step0.~~install CUDA Toolkit v8.0(It has already been install on the Server Computer,you can skip this step.)~~       
 ### ~~instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))~~         
 ~~CUDA_REPO_PKG="cuda-repo-ubuntu1604_8.0.61-1_amd64.deb"~~        
