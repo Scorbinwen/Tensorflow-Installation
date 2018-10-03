@@ -96,11 +96,27 @@ apt-get install psmisc
 reference link[https://blog.csdn.net/bryant_meng/article/details/79153531]
 # For Muti-GPUs synchronization(e.g. Batch_Normalization Synchronization)     
 ## Requirement:      
-### 1.cuda9 + cudnn-v7.1 + tensorflow-1.10+:         
-##### commands for install cudnn-v7.1:     
+### 1.cuda9 + cudnn-v7.1 + tensorflow-1.10+ + nccl:         
+#### commands for install cudnn-v7.1:     
 wget https://s3.amazonaws.com/open-source-william-falcon/cudnn-9.0-linux-x64-v7.1.tgz  
 tar -xzvf cudnn-9.0-linux-x64-v7.1.tgz               
 cp cuda/include/cudnn.h /usr/local/cuda/include             
 cp cuda/lib64/libcudnn* /usr/local/cuda/lib64                     
-chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*                            
+chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn* 
+#### commands for install nccl
+dpkg -i nccl-repo-ubuntu1604-2.3.5-ga-cuda9.0_1-1_amd64.deb              
+apt update              
+apt install libnccl2=2.3.5-2+cuda9.0 libnccl-dev=2.3.5-2+cuda9.0             
+#### Using commands above,you may encounter error:
+/sbin/ldconfig.real: /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7 is not a symbolic link
+#### Solve the problem above use the method below:
+1. check the link:                
+sudo ldconfig -v            
+
+2. Find the error:                  
+/sbin/ldconfig.real: /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7 is not a symbolic link                   
+libcudnn.so.7 -> libcudnn.so.7.0.5                 
+
+3. Create the new link manually:               
+sudo ln -sf /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.0.5 /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7        
 ## Steps for this Muti-GPUs' environment configuration is similar with the configuration we mentioned before.
