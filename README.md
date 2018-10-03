@@ -94,3 +94,13 @@ apt-get install psmisc
 
 ## Show tensorboard on your local machine
 reference link[https://blog.csdn.net/bryant_meng/article/details/79153531]
+# For Muti-GPUs synchronization(e.g. Batch_Normalization Synchronization)     
+## Requirement:      
+### 1.cuda9 + cudnn-v9.0 + tensorflow-1.10+:         
+##### commands for install cudnn-v9.0:     
+wget https://s3.amazonaws.com/open-source-william-falcon/cudnn-9.0-linux-x64-v7.1.tgz  
+sudo tar -xzvf cudnn-9.0-linux-x64-v7.1.tgz  
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*            
+## Steps for this Muti-GPUs' environment configuration is similar with the configuration we mentioned before.
