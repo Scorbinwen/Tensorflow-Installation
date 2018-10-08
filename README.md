@@ -103,10 +103,14 @@ tar -xzvf cudnn-9.0-linux-x64-v7.1.tgz
 cp cuda/include/cudnn.h /usr/local/cuda/include             
 cp cuda/lib64/libcudnn* /usr/local/cuda/lib64                     
 chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn* 
+#### commands for uninstall nccl
+apt remove libnccl2 libnccl-dev
 #### commands for install nccl
 dpkg -i nccl-repo-ubuntu1604-2.3.5-ga-cuda9.0_1-1_amd64.deb              
 apt update              
 apt install libnccl2=2.3.5-2+cuda9.0 libnccl-dev=2.3.5-2+cuda9.0             
+#### commands to check whehter nccl is correctly installed:
+apt list | grep nccl
 #### Using commands above,you may encounter error:
 /sbin/ldconfig.real: /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7 is not a symbolic link
 #### Solve the problem above use the method below:
