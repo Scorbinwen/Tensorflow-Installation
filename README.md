@@ -1,13 +1,11 @@
 # Tutorial on logining the docker instance
 ## Build your own docker instance
 ## Go to the GPU-management platform http://station.csgrandeur.com/gpu/faqs    
-## Step1.Register your own account using the inviting-code provided by @LiuNing
-## Step2.
-
-
+## Step1.Register using the inviting-code provided by @LiuNing
+## Step2.Apply a port for accessing the servers.
 
 # Tensorflow-Installation
-## Step0. install CUDA Toolkit v8.0(It has already been install on the Server Computer,you can skip this step.)            
+## Step0. install CUDA Toolkit v8.0(It has already been install on our Servers,you can skip this step.)            
 ###  instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))               
 CUDA_REPO_PKG="cuda-repo-ubuntu1604_8.0.61-1_amd64.deb"       
 wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/${CUDA_REPO_PKG}           
@@ -56,17 +54,19 @@ source activate tensorflow-gpu
 **Notice:the command below may fail,just try more times.**        
 conda install tensorflow-gpu    
 
-## Step6. update the pip source   
+## Step6. update the pip source to accelerate the download speed
 source activate tensorflow-gpu    
 mkdir .pip    
 vim .pip/pip.conf   
-copy source below to .pip/pip.conf:   
+copy the following source to .pip/pip.conf             
+(Notice: Enter the insert mode(press key "i") before you copy the following source to ./pip/pip.conf):     
 "  
 [global]    
 index-url = http://mirrors.aliyun.com/pypi/simple/    
 [install]   
 trusted-host = mirrors.aliyun.com   
 "  
+After you copy this source to the pip.conf,press "esc" to escape from the insert mode,and then type into ":wq" to save ./pip/pip.conf
 apt-get update      
 ### then you can install the libs you need using pip install xxx(e.g. pip install opencv-python)    
 Problems you may encounter:   
