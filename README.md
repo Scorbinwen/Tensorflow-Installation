@@ -66,7 +66,7 @@ index-url = http://mirrors.aliyun.com/pypi/simple/
 [install]   
 trusted-host = mirrors.aliyun.com   
 "  
-After you copy this source to the pip.conf,press "esc" to escape from the insert mode,and then type into ":wq" to save ./pip/pip.conf
+After you copy this source to the pip.conf,press "esc" to escape from the insert mode,and then type into ":wq" to save ./pip/pip.conf and exit                        
 apt-get update      
 ### then you can install the libs you need using pip install xxx(e.g. pip install opencv-python)    
 Problems you may encounter:   
