@@ -13,7 +13,7 @@ Tensorflow installation tutorial for newbees...
 # Tensorflow Installation
 
 ## Step0. CUDA Installation
-*install CUDA Toolkit v8.0,or any other version you need(It has already been install on our Servers,you can skip this step.)            
+* install CUDA Toolkit v8.0,or any other version you need(It has already been install on our Servers,you can skip this step.)            
 
 ###  instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))
 #### Fetch the .deb cuda package.
