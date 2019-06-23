@@ -1,4 +1,4 @@
-# Tutorial on logining the docker instance
+# Tutorial on virtual envs configuration
 Tensorflow installation tutorial for newbees...
 * [Prerequisites](#prerequisites)
 * [Tensorflow Installation](#Tensorflow-Installation)
