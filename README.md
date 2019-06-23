@@ -21,7 +21,7 @@ $apt-get -y install cuda
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-## Step1. install cuDNN v6.0(install the compatible(with CUDA) cuDNN version,for cuDNN v7 installation instruction,see [Muti-GPUs synchronization](#Muti-GPUs synchronization))
+## Step1. install cuDNN v6.0(install the compatible(with CUDA) cuDNN version,for cuDNN v7 installation instruction,see [Muti-GPUs synchronization](#Muti-GPUs-synchronization))
 ```
 $CUDNN_TAR_FILE="cudnn-8.0-linux-x64-v6.0.tgz"   
 $wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/${CUDNN_TAR_FILE}   
