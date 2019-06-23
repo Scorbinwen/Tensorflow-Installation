@@ -2,7 +2,7 @@
 Tensorflow installation tutorial for newbees...
 * [Prerequisites](#prerequisites)
 * [Tensorflow Installation](#Tensorflow-Installation)
-* [Muti-GPUs synchronization](#Muti-GPUs synchronization)
+* [Muti-GPUs synchronization](#Muti-GPUs-synchronization)
 
 # Prerequisites
 ## Build your own docker instance
