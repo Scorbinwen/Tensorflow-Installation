@@ -2,13 +2,13 @@
 Tensorflow installation tutorial for newbees...
 * [Prerequisites](#prerequisites)
 * [Tensorflow Installation](#Tensorflow-Installation)
-
+* [Muti-GPUs synchronization](#Muti-GPUs synchronization)
 
 # Prerequisites
 ## Build your own docker instance
 ## Go to the GPU-management platform http://station.csgrandeur.com/gpu/faqs    
-## Step1.Register using the inviting-code provided by @LiuNing
-## Step2.Apply a port for accessing the servers.
+## Register using the inviting-code provided by @LiuNing
+## Apply a port for accessing the servers.
 
 # Tensorflow Installation
 
@@ -130,6 +130,7 @@ $apt-get install psmisc
 ```
 ## Show tensorboard on your local machine
 reference link[https://blog.csdn.net/bryant_meng/article/details/79153531]
+
 # Muti-GPUs synchronization
 ## Motivation
 *Batch_Normalization Synchronization
