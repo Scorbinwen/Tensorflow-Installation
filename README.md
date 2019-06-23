@@ -116,24 +116,10 @@ $apt-get -y upgrade
 $pip install opencv-python    
 $apt-get install libgtk2.0-dev -y   
 ```
-## PS: use command "nvidia-smi" to monitor the usage of GPUs to see which processes that occupy the GPUs:  
-```
-$fuser -v /dev/nvidia*  
-```
-this command may fail:   
-```
-$fuser command not found  
-```
-### install the psmisc which contains command fuser:  
-```
-$apt-get install psmisc  
-```
-## Show tensorboard on your local machine
-reference link[https://blog.csdn.net/bryant_meng/article/details/79153531]
 
 # Muti-GPUs synchronization
 ## Motivation
-*Batch_Normalization Synchronization
+* Batch_Normalization Synchronization
 
 ## Requirement:      
 ### 1.cuda9 + cudnn-v7.1 + tensorflow-1.10+ + nccl:         
@@ -164,7 +150,7 @@ $apt list | grep nccl
 $/sbin/ldconfig.real: /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7 is not a symbolic link
 ```
 #### Solve the problem above use the method below:
-*check the link:                
+* check the link:                
 ```
 $sudo ldconfig -v            
 ```
@@ -178,4 +164,45 @@ libcudnn.so.7 -> libcudnn.so.7.0.5
  $ln -sf /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.0.5 /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7        
  ```
  [Note]: ln -s target symbolic-link
+ 
+ # Others
+ ## PS: use command "nvidia-smi" to monitor the usage of GPUs to see which processes that occupy the GPUs:  
+```
+$fuser -v /dev/nvidia*  
+```
+this command may fail:   
+```
+$fuser command not found  
+```
+### install the psmisc which contains command fuser:  
+```
+$apt-get install psmisc  
+```
+## Show tensorboard on your local machine
+reference link[https://blog.csdn.net/bryant_meng/article/details/79153531]
+## Stuck at apt-get update
+Sometimes you may encounter :
+0%[working...] when you update the source using command 
+```
+$ apt-get update
+```
+This problem probably stems from the directory: /etc/apt where apt-get update works
+```
+$ls /etc/apt/
+```
+`
+apt.conf.d  auth.conf.d  preferences.d  sources.list source.list.d  trusted.gpg  trusted.gpg~
+`
+## Solution for the problem above
+* Find out the source you stuck when update ,for our cases,it's source.list.d,this directory stores additional source for some package.
+```
+$ rm -r /etc/list/source.list.d
+$ apt-get update
+```
+[Note]: The APT package index is essentially a database of available packages from the repositories defined in the /etc/apt/sources.list file and in the /etc/apt/sources.list.d directory.
+for more information about /etc/list,refer to [https://askubuntu.com/questions/82825/do-files-at-etc-apt-sources-list-d-need-to-have-an-extension-list]
+
+
+
+
 
