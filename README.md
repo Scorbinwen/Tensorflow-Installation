@@ -18,7 +18,10 @@ $dpkg -i ${CUDA_REPO_PKG}
 $apt-get update           
 $apt-get -y install cuda           
 ```
-## Step1. install cuDNN v6.0(install the compatible(with CUDA) cuDNN version,for cuDNN v7 installation instruction,see  Muti-GPUs synchronization)
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+## Step1. install cuDNN v6.0(install the compatible(with CUDA) cuDNN version,for cuDNN v7 installation instruction,see [Muti-GPUs synchronization](#Muti-GPUs synchronization))
 ```
 $CUDNN_TAR_FILE="cudnn-8.0-linux-x64-v6.0.tgz"   
 $wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/${CUDNN_TAR_FILE}   
@@ -117,7 +120,10 @@ $apt-get install psmisc
 ```
 ## Show tensorboard on your local machine
 reference link[https://blog.csdn.net/bryant_meng/article/details/79153531]
-# For Muti-GPUs synchronization(e.g. Batch_Normalization Synchronization)     
+# Muti-GPUs synchronization
+## Motivation
+*Batch_Normalization Synchronization
+
 ## Requirement:      
 ### 1.cuda9 + cudnn-v7.1 + tensorflow-1.10+ + nccl:         
 #### commands for install cudnn-v7.1:     
