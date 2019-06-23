@@ -1,11 +1,20 @@
 # Tutorial on logining the docker instance
+Tensorflow installation tutorial for newbees...
+* [Prerequisites](#prerequisites)
+* [Tensorflow Installation](#Tensorflow-Installation)
+
+
+# Prerequisites
 ## Build your own docker instance
 ## Go to the GPU-management platform http://station.csgrandeur.com/gpu/faqs    
 ## Step1.Register using the inviting-code provided by @LiuNing
 ## Step2.Apply a port for accessing the servers.
 
-# Tensorflow-Installation
-## Step0. install CUDA Toolkit v8.0,or any other version you need(It has already been install on our Servers,you can skip this step.)            
+# Tensorflow Installation
+
+## Step0. CUDA Installation
+*install CUDA Toolkit v8.0,or any other version you need(It has already been install on our Servers,you can skip this step.)            
+
 ###  instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))
 #### Fetch the .deb cuda package.
 ```
@@ -21,7 +30,8 @@ $apt-get -y install cuda
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-## Step1. install cuDNN v6.0(install the compatible(with CUDA) cuDNN version,for cuDNN v7 installation instruction,see [Muti-GPUs synchronization](#Muti-GPUs-synchronization))
+## Step1. install cuDNN v6.0
+install the compatible(with CUDA) cuDNN version,for cuDNN v7 installation instruction,see [Muti-GPUs synchronization](#Muti-GPUs-synchronization)
 ```
 $CUDNN_TAR_FILE="cudnn-8.0-linux-x64-v6.0.tgz"   
 $wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/${CUDNN_TAR_FILE}   
