@@ -3,7 +3,7 @@ Tensorflow installation tutorial for newbees...
 * [Prerequisites](#prerequisites)
 * [Tensorflow Installation](#Tensorflow-Installation)
 * [Muti-GPUs synchronization](#Muti-GPUs-synchronization)
-
+* [Others](#Others)
 # Prerequisites
 ## Build your own docker instance
 ## Go to the GPU-management platform http://station.csgrandeur.com/gpu/faqs    
@@ -193,7 +193,7 @@ $ls /etc/apt/
 `
 apt.conf.d  auth.conf.d  preferences.d  sources.list source.list.d  trusted.gpg  trusted.gpg~
 `
-## Solution for the problem above
+### Solution for the problem above
 * Find out the source you stuck when update ,for our cases,it's source.list.d,this directory stores additional source for some package.
 ```
 $ rm -r /etc/list/source.list.d
