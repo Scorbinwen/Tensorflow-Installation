@@ -5,15 +5,17 @@
 ## Step2.Apply a port for accessing the servers.
 
 # Tensorflow-Installation
-## Step0. install CUDA Toolkit v8.0(It has already been install on our Servers,you can skip this step.)            
-###  instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))               
+## Step0. install CUDA Toolkit v8.0,or any other version you need(It has already been install on our Servers,you can skip this step.)            
+###  instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))
+#### Fetch the .deb cuda package.
 CUDA_REPO_PKG="cuda-repo-ubuntu1604_8.0.61-1_amd64.deb"       
 wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/${CUDA_REPO_PKG}           
+#### Install cuda 
 dpkg -i ${CUDA_REPO_PKG}            
 apt-get update           
 apt-get -y install cuda           
 
-## Step1. install cuDNN v6.0  
+## Step1. install cuDNN v6.0(install the compatible(with CUDA) cuDNN version,for cuDNN v7 installation instruction,see  Muti-GPUs synchronization)
 CUDNN_TAR_FILE="cudnn-8.0-linux-x64-v6.0.tgz"   
 wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/${CUDNN_TAR_FILE}   
 tar -xzvf ${CUDNN_TAR_FILE}   
@@ -24,7 +26,8 @@ chmod a+r /usr/local/cuda-8.0/lib64/libcudnn*
 ## Step2. set environment variables   
 ### add the 2 paths below to ~/.bashrc:   
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}    
-export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}    
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}    
+[Explanation]: ${PATH:+:${PATH}} means that if PATH exists and PATH is not null then append the directory ${PATH} to PATH.
 
 ## Step3. download and install anaconda   
 ### select an compatible version of anaconda from "https://repo.continuum.io/archive/" or just use command below to download anaconda3:     
@@ -34,16 +37,13 @@ wget https://repo.continuum.io/archive/Anaconda3-2.4.0-Linux-x86_64.sh
 bash Anaconda3-2.4.0-Linux-x86_64.sh    
 
 **Notice:   
-Approve the licence at last:     
+Approve the licence at last and follow the installation navigation:     
 Do you approve the license terms? [yes|no]    
 [no] >>> yes**       
+   
 
-### add the path below to ~/.bashrc   
-$ export PATH=/root/anaconda3/bin:$PATH   
-
-
-
-## Step5. download and install tensorflow-gpu   
+## Step5. download and install tensorflow-gpu
+### add tsinghua conda source to accelerate the download speed.
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/    
 conda config --set show_channel_urls yes    
   
@@ -66,8 +66,9 @@ index-url = http://mirrors.aliyun.com/pypi/simple/
 [install]   
 trusted-host = mirrors.aliyun.com   
 "  
-After you copy this source to the pip.conf,press "esc" to escape from the insert mode,and then type into ":wq" to save ./pip/pip.conf and exit                        
-apt-get update      
+After you copy this source to the pip.conf,press "esc" to escape from the insert mode(and enter into normal mode),
+and then type  ":wq" to save ./pip/pip.conf and exit                        
+     
 ### then you can install the libs you need using pip install xxx(e.g. pip install opencv-python)    
 Problems you may encounter:   
 After you pip install opencv-python,you may still fail to import cv2:   
@@ -78,6 +79,8 @@ Traceback (most recent call last):
   File "/root/anaconda3/envs/tensorflow-gpu/lib/python3.5/site-packages/cv2/__init__.py", line 3, in <module>   
     from .cv2 import *    
 ImportError: libgthread-2.0.so.0: cannot open shared object file: No such file or directory   
+  
+[tips]:for problems(e.g.libgthread-2.0.so.0: cannot open shared object file: No such file or directory),you can search on Ubuntu forum
   
 ### Solve the problem above using command as follow:    
 apt-get update   
@@ -122,5 +125,6 @@ sudo ldconfig -v
 libcudnn.so.7 -> libcudnn.so.7.0.5                 
 
 3. Create the new link manually:               
-sudo ln -sf /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.0.5 /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7        
-## Steps for this Muti-GPUs' environment configuration is similar with the configuration we mentioned before.
+ ln -sf /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.0.5 /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7        
+ [Note]: ln -s target symbolic-link
+
