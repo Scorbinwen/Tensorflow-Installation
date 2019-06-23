@@ -194,7 +194,7 @@ apt.conf.d  auth.conf.d  preferences.d  sources.list source.list.d  trusted.gpg 
 ### Solution for the problem above
 * Find out the source you stuck when update ,for our cases,it's source.list.d,this directory stores additional source for some package.
 ```
-$ rm -r /etc/list/source.list.d
+$ rm -r /etc/apt/source.list.d
 $ apt-get update
 ```
 [Note]:     
