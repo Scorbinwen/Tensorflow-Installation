@@ -189,17 +189,16 @@ $ apt-get update
 This problem probably stems from the directory: /etc/apt where apt-get update works
 ```
 $ls /etc/apt/
-```
-`
 apt.conf.d  auth.conf.d  preferences.d  sources.list source.list.d  trusted.gpg  trusted.gpg~
-`
+```
 ### Solution for the problem above
 * Find out the source you stuck when update ,for our cases,it's source.list.d,this directory stores additional source for some package.
 ```
 $ rm -r /etc/list/source.list.d
 $ apt-get update
 ```
-[Note]: The APT package index is essentially a database of available packages from the repositories defined in the /etc/apt/sources.list file and in the /etc/apt/sources.list.d directory.
+[Note]:     
+The APT package index is essentially a database of available packages from the repositories defined in the /etc/apt/sources.list file and in the /etc/apt/sources.list.d directory.     
 for more information about /etc/list,refer to [https://askubuntu.com/questions/82825/do-files-at-etc-apt-sources-list-d-need-to-have-an-extension-list]
 
 
