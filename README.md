@@ -171,18 +171,18 @@ libcudnn.so.7 -> libcudnn.so.7.0.5
  |---------------|------------|------------|-----------|
  |192.168.50.113 |    33010   |    None    |Yes
  |192.168.50.113 |    33020   |  Wenxiaobin|No
- |192.168.50.113 |    33030   |  Zhouzhongquan|No
+ |192.168.50.113 |    33030   |  Zouzhongquan|No
  |192.168.50.113 |    33040   | RenHui     |Yes
  |192.168.50.113 |    33050   |Not Allocated|No
  |192.168.50.113 |    33060   |TainLi       |No
  |192.168.50.113 |    33070   |None         |Yes
  |192.168.50.113 |    33080   | HeJiaLi     |Yes
  |192.168.50.113 |    33090   |None         |Yes
+ |192.168.50.50  |    31010   | None        |Yes
  |192.168.50.50  |    31020   |Wenxiaobin(Scorbin)|Yes
  |192.168.50.50  |    31030   |Yangxiaodi   |No
- |192.168.50.50  |    31040   |Zhouzhongquan|No
+ |192.168.50.50  |    31040   |Zouzhongquan|No
  |192.168.50.50  |    31050   |Hongxuesong  |No
- |192.168.50.50  |    31010   | None        |Yes
  |192.168.50.50  |    31060   |HeJiaLi      |Yes
  
  
