@@ -1,8 +1,9 @@
 # Tutorial on virtual envs configuration
 Tensorflow installation tutorial for newbees...
-* [Prerequisites](#prerequisites)
-* [Tensorflow Installation](#Tensorflow-Installation)
-* [Muti-GPUs synchronization](#Muti-GPUs-synchronization)
+* [Prerequisites](#prerequisites)  
+* [Tensorflow Installation](#Tensorflow-Installation)  
+* [Muti-GPUs synchronization](#Muti-GPUs-synchronization)  
+* [Server Port Table](#Server-Port-Table)  
 * [Others](#Others)
 # Prerequisites
 ## Build your own docker instance
@@ -164,6 +165,26 @@ libcudnn.so.7 -> libcudnn.so.7.0.5
  $ln -sf /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.0.5 /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7        
  ```
  [Note]: ln -s target symbolic-link
+ 
+ # Server Port Table
+ |   Server IP   |    Port    |    Owner   |   Public  |
+ |---------------|------------|------------|-----------|
+ |192.168.50.113 |    33010   |    None    |Yes
+ |192.168.50.113 |    33020   |  Wenxiaobin|No
+ |192.168.50.113 |    33030   |  Zhouzhongquan|No
+ |192.168.50.113 |    33040   | RenHui     |Yes
+ |192.168.50.113 |    33050   |Not Allocated|No
+ |192.168.50.113 |    33060   |TainLi       |No
+ |192.168.50.113 |    33070   |None         |Yes
+ |192.168.50.113 |    33080   | HeJiaLi     |Yes
+ |192.168.50.113 |    33090   |None         |Yes
+ |192.168.50.50  |    31020   |Wenxiaobin(Scorbin)|Yes
+ |192.168.50.50  |    31030   |Yangxiaodi   |No
+ |192.168.50.50  |    31040   |Zhouzhongquan|No
+ |192.168.50.50  |    31050   |Hongxuesong  |No
+ |192.168.50.50  |    31010   | None        |Yes
+ |192.168.50.50  |    31060   |HeJiaLi      |Yes
+ 
  
  # Others
  ## PS: use command "nvidia-smi" to monitor the usage of GPUs to see which processes that occupy the GPUs:  
