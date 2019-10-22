@@ -181,7 +181,7 @@ libcudnn.so.7 -> libcudnn.so.7.0.5
  |192.168.50.50  |    31010   | None        |Yes        |
  |192.168.50.50  |    31020   |Wenxiaobin(Scorbin)|Yes        |
  |192.168.50.50  |    31030   |Yangxiaodi   |No        |
- |192.168.50.50  |    31040   |Zouzhongquan|No        |
+ |192.168.50.50  |    31040   |Zouzhongquan|No        |3535woai35  |
  |192.168.50.50  |    31050   |Hongxuesong  |No        |
  |192.168.50.50  |    31060   |HeJiaLi      |Yes        |
  
