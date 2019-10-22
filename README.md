@@ -177,7 +177,8 @@ libcudnn.so.7 -> libcudnn.so.7.0.5
  |192.168.50.113 |    33060   |TainLi       |No
  |192.168.50.113 |    33070   |None         |Yes
  |192.168.50.113 |    33080   | HeJiaLi     |Yes
- |192.168.50.113 |    33090   |None         |Yes
+ |192.168.50.113 |    33090   |TangPing     |Yes
+ |192.168.50.50  |    30320   | RenHui      |Yes
  |192.168.50.50  |    31010   | None        |Yes
  |192.168.50.50  |    31020   |Wenxiaobin(Scorbin)|Yes
  |192.168.50.50  |    31030   |Yangxiaodi   |No
