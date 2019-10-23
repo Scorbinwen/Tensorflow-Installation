@@ -54,6 +54,10 @@ $export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 ```
 $wget https://repo.continuum.io/archive/Anaconda3-2.4.0-Linux-x86_64.sh    
 ```
+[**Recommendation**]:You can  update conda to the lastest version using command as follow:
+```
+conda update conda
+```
 ## Step4. install anaconda    
 ```
 $bash Anaconda3-2.4.0-Linux-x86_64.sh    
