@@ -1,5 +1,5 @@
 # Tutorial on virtual envs configuration
-Tensorflow installation tutorial for newbees...
+DeepLearning framework Tensorflow/Pytorch installation tutorial for newbees...
 * [Prerequisites](#prerequisites)  
 * [Tensorflow Installation](#Tensorflow-Installation)  
 * [Muti-GPUs synchronization](#Muti-GPUs-synchronization)  
@@ -7,14 +7,26 @@ Tensorflow installation tutorial for newbees...
 * [Others](#Others)
 # Prerequisites
 ## Build your own docker instance
-## Go to the GPU-management platform http://station.csgrandeur.com/gpu/faqs    
-## Register using the inviting-code provided by @LiuNing
-## Apply a port for accessing the servers.
+* Go to the GPU-management platform http://station.csgrandeur.com/gpu/faqs    
+* Register an account using the inviting-code provided by @LiuNing
+* Select an available server and build a new docker instance.
 
-# Tensorflow Installation
-
+# DL-Framework configuration
+## Step0. Choose compatible CUDA cudnn version.
 ## Step0. CUDA Installation
-* install CUDA Toolkit v8.0,or any other version you need(It has already been install on our Servers,you can skip this step.)            
+
+* CUDA:  
+```
+The NVIDIA® CUDA® Toolkit provides a development environment for creating high performance GPU-accelerated applications. With the CUDA Toolkit, you can develop, optimize and deploy your applications on GPU-accelerated embedded systems, desktop workstations, enterprise data centers, cloud-based platforms and HPC supercomputers. The toolkit includes GPU-accelerated libraries, debugging and optimization tools, a C/C++ compiler and a runtime library to deploy your application.
+```
+* cuDNN:  
+```
+The NVIDIA CUDA® Deep Neural Network library (cuDNN) is a GPU-accelerated library of primitives for deep neural networks. cuDNN provides highly tuned implementations for standard routines such as forward and backward convolution, pooling, normalization, and activation layers.
+```
+* CUDA & cuDNN compatible table:   
+Refer to [https://docs.nvidia.com/deeplearning/sdk/cudnn-support-matrix/index.html]
+
+* install CUDA Toolkit[https://developer.nvidia.com/cuda-toolkit] v8.0,or any other version you need(It has already been install on our Servers,you can skip this step.)
 
 ###  instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))
 #### Fetch the .deb cuda package.
@@ -26,13 +38,20 @@ $wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/
 ```
 $dpkg -i ${CUDA_REPO_PKG}            
 $apt-get update           
-$apt-get -y install cuda           
+$apt-get -y install cuda          
+$vim ~/.bashrc
+Append the following two env paths:
+```
+$export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}    
+$export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}  
+[Explanation]: ${PATH:+:${PATH}} means that if PATH exists and PATH is not null then append the directory ${PATH} to PATH.
+```
 ```
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
 ## Step1. install cuDNN v6.0
-install the compatible(with CUDA) cuDNN version,for cuDNN v7 installation instruction,see [Muti-GPUs synchronization](#Muti-GPUs-synchronization)
+Install the compatible(with CUDA) cuDNN version:
 ```
 $CUDNN_TAR_FILE="cudnn-8.0-linux-x64-v6.0.tgz"   
 $wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/${CUDNN_TAR_FILE}   
@@ -42,15 +61,8 @@ $cp -P cuda/lib64/libcudnn* /usr/local/cuda-8.0/lib64/
 $chmod a+r /usr/local/cuda-8.0/lib64/libcudnn*   
 ```
 ## Step2. set environment variables   
-### add the 2 paths below to ~/.bashrc:   
-```
-$export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}    
-$export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}    
-```
-[Explanation]: ${PATH:+:${PATH}} means that if PATH exists and PATH is not null then append the directory ${PATH} to PATH.
-
 ## Step3. download and install anaconda   
-### select an compatible version of anaconda from "https://repo.continuum.io/archive/" or just use command below to download anaconda3:     
+### download anaconda3: 
 ```
 $wget https://repo.continuum.io/archive/Anaconda3-2.4.0-Linux-x86_64.sh    
 ```
@@ -66,25 +78,20 @@ $bash Anaconda3-2.4.0-Linux-x86_64.sh
 Approve the licence at last and follow the installation navigation:     
 Do you approve the license terms? [yes|no]    
 [no] >>> yes**       
-   
 
-## Step5. download and install tensorflow-gpu
-### add tsinghua conda source to accelerate the download speed.
+## Step5. Create virtual envs
+### Add tsinghua conda source to accelerate the download speed.
 ```
 $conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/    
 $conda config --set show_channel_urls yes    
 
-$conda create -n tensorflow-gpu python=3.6   
-$source activate tensorflow-gpu    
+$conda create -n YOUR_ENV_NAME python=3.6   
+$source activate YOUR_ENV_NAME    
 ```
 
-**Notice:the command below may fail,just try more times.**        
-```
-$conda install tensorflow-gpu    
-```
 ## Step6. update the pip source to accelerate the download speed
 ```
-$source activate tensorflow-gpu    
+$source activate YOUR_ENV_NAME
 $mkdir .pip    
 $vim .pip/pip.conf   
 ```
@@ -101,75 +108,7 @@ After you copy this source to the pip.conf,press "esc" to escape from the insert
 and then type  ":wq" to save ./pip/pip.conf and exit                        
      
 ### then you can install the libs you need using pip install xxx(e.g. pip install opencv-python)    
-Problems you may encounter:   
-After you pip install opencv-python,you may still fail to import cv2:   
-```
-$python   
->>>import cv2    
-Traceback (most recent call last):  
-  File "<stdin>", line 1, in <module>   
-  File "/root/anaconda3/envs/tensorflow-gpu/lib/python3.5/site-packages/cv2/__init__.py", line 3, in <module>   
-    from .cv2 import *    
-ImportError: libgthread-2.0.so.0: cannot open shared object file: No such file or directory   
-```
-[tips]:for problems(e.g.libgthread-2.0.so.0: cannot open shared object file: No such file or directory),you can search on Ubuntu forum
-  
-### Solve the problem above using command as follow:    
-```
-$apt-get update   
-$apt-get -y upgrade     
-$pip install opencv-python    
-$apt-get install libgtk2.0-dev -y   
-```
 
-# Muti-GPUs synchronization
-## Motivation
-* Batch_Normalization Synchronization
-
-## Requirement:      
-### 1.cuda9 + cudnn-v7.1 + tensorflow-1.10+ + nccl:         
-#### commands for install cudnn-v7.1:     
-```
-$wget https://s3.amazonaws.com/open-source-william-falcon/cudnn-9.0-linux-x64-v7.1.tgz  
-$tar -xzvf cudnn-9.0-linux-x64-v7.1.tgz               
-$cp cuda/include/cudnn.h /usr/local/cuda/include             
-$cp cuda/lib64/libcudnn* /usr/local/cuda/lib64                     
-$chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn* 
-```
-#### commands for uninstall nccl
-```
-$apt remove libnccl2 libnccl-dev
-```
-#### commands for install nccl
-```
-$dpkg -i nccl-repo-ubuntu1604-2.3.5-ga-cuda9.0_1-1_amd64.deb              
-$apt update              
-$apt install libnccl2=2.3.5-2+cuda9.0 libnccl-dev=2.3.5-2+cuda9.0             
-```
-#### commands to check whehter nccl is correctly installed:
-```
-$apt list | grep nccl
-```
-#### Using commands above,you may encounter error:
-```
-$/sbin/ldconfig.real: /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7 is not a symbolic link
-```
-#### Solve the problem above use the method below:
-* check the link:                
-```
-$sudo ldconfig -v            
-```
-
-* Find the error:                  
-/sbin/ldconfig.real: /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7 is not a symbolic link                   
-libcudnn.so.7 -> libcudnn.so.7.0.5                 
-
-* Create the new link manually:               
- ```
- $ln -sf /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.0.5 /usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7        
- ```
- [Note]: ln -s target symbolic-link
- 
  # Server Port Table
  |   Server IP   |    Port    |    Owner   |   Public  |
  |---------------|------------|------------|-----------|
@@ -190,20 +129,7 @@ libcudnn.so.7 -> libcudnn.so.7.0.5
  |192.168.50.50  |    31050   |Hongxuesong  |No
  |192.168.50.50  |    31060   |HeJiaLi      |Yes
  
- 
- # Others
- ## PS: use command "nvidia-smi" to monitor the usage of GPUs to see which processes that occupy the GPUs:  
-```
-$fuser -v /dev/nvidia*  
-```
-this command may fail:   
-```
-$fuser command not found  
-```
-### install the psmisc which contains command fuser:  
-```
-$apt-get install psmisc  
-```
+
 ## Show tensorboard on your local machine
 reference link[https://blog.csdn.net/bryant_meng/article/details/79153531]
 ## Stuck at apt-get update
@@ -217,15 +143,12 @@ This problem probably stems from the directory: /etc/apt where apt-get update wo
 $ls /etc/apt/
 apt.conf.d  auth.conf.d  preferences.d  sources.list source.list.d  trusted.gpg  trusted.gpg~
 ```
-### Solution for the problem above
+### SOLUTION:
 * Find out the source you stuck when update ,for our cases,it's source.list.d,this directory stores additional source for some package.
 ```
 $ rm -r /etc/apt/source.list.d
 $ apt-get update
 ```
-[Note]:     
-The APT package index is essentially a database of available packages from the repositories defined in the /etc/apt/sources.list file and in the /etc/apt/sources.list.d directory.     
-for more information about /etc/list,refer to [https://askubuntu.com/questions/82825/do-files-at-etc-apt-sources-list-d-need-to-have-an-extension-list]
 
 
 
