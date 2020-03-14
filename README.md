@@ -1,10 +1,10 @@
 # Tutorial on virtual envs configuration
 DeepLearning framework Tensorflow/Pytorch installation tutorial for newbees...
 * [Prerequisites](#prerequisites)  
-* [Tensorflow Installation](#Tensorflow-Installation)  
-* [Muti-GPUs synchronization](#Muti-GPUs-synchronization)  
+* [DL-Framework configuration](#DL-Framework-configuration)   
 * [Server Port Table](#Server-Port-Table)  
 * [Others](#Others)
+
 # Prerequisites
 ## Build your own docker instance
 * Go to the GPU-management platform http://station.csgrandeur.com/gpu/faqs    
@@ -12,9 +12,7 @@ DeepLearning framework Tensorflow/Pytorch installation tutorial for newbees...
 * Select an available server and build a new docker instance.
 
 # DL-Framework configuration
-## Step0. Choose compatible CUDA cudnn version.
-## Step0. CUDA Installation
-
+## Step0. Choose compatible CUDA cudnn version.  
 * CUDA:  
 ```
 The NVIDIA® CUDA® Toolkit provides a development environment for creating high performance GPU-accelerated applications. With the CUDA Toolkit, you can develop, optimize and deploy your applications on GPU-accelerated embedded systems, desktop workstations, enterprise data centers, cloud-based platforms and HPC supercomputers. The toolkit includes GPU-accelerated libraries, debugging and optimization tools, a C/C++ compiler and a runtime library to deploy your application.
@@ -25,7 +23,7 @@ The NVIDIA CUDA® Deep Neural Network library (cuDNN) is a GPU-accelerated libra
 ```
 * CUDA & cuDNN compatible table:   
 Refer to [https://docs.nvidia.com/deeplearning/sdk/cudnn-support-matrix/index.html]
-
+## Step1. CUDA Installation
 * install CUDA Toolkit[https://developer.nvidia.com/cuda-toolkit] v8.0,or any other version you need(It has already been install on our Servers,you can skip this step.)
 
 ###  instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))
@@ -50,7 +48,7 @@ $export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-## Step1. install cuDNN v6.0
+## Step2. install cuDNN v6.0
 Install the compatible(with CUDA) cuDNN version:
 ```
 $CUDNN_TAR_FILE="cudnn-8.0-linux-x64-v6.0.tgz"   
@@ -60,9 +58,9 @@ $cp -P cuda/include/cudnn.h /usr/local/cuda-8.0/include
 $cp -P cuda/lib64/libcudnn* /usr/local/cuda-8.0/lib64/   
 $chmod a+r /usr/local/cuda-8.0/lib64/libcudnn*   
 ```
-## Step2. set environment variables   
-## Step3. download and install anaconda   
-### download anaconda3: 
+## Step3. Set environment variables   
+## Step4. Download and install anaconda   
+### Download anaconda3: 
 ```
 $wget https://repo.continuum.io/archive/Anaconda3-2.4.0-Linux-x86_64.sh    
 ```
@@ -70,7 +68,7 @@ $wget https://repo.continuum.io/archive/Anaconda3-2.4.0-Linux-x86_64.sh
 ```
 conda update conda
 ```
-## Step4. install anaconda    
+## Step5. Install anaconda    
 ```
 $bash Anaconda3-2.4.0-Linux-x86_64.sh    
 ```
@@ -79,7 +77,7 @@ Approve the licence at last and follow the installation navigation:
 Do you approve the license terms? [yes|no]    
 [no] >>> yes**       
 
-## Step5. Create virtual envs
+## Step6. Create virtual envs
 ### Add tsinghua conda source to accelerate the download speed.
 ```
 $conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/    
@@ -89,7 +87,7 @@ $conda create -n YOUR_ENV_NAME python=3.6
 $source activate YOUR_ENV_NAME    
 ```
 
-## Step6. update the pip source to accelerate the download speed
+## Step7. Update the pip source to accelerate the download speed
 ```
 $source activate YOUR_ENV_NAME
 $mkdir .pip    
@@ -108,8 +106,11 @@ After you copy this source to the pip.conf,press "esc" to escape from the insert
 and then type  ":wq" to save ./pip/pip.conf and exit                        
      
 ### then you can install the libs you need using pip install xxx(e.g. pip install opencv-python)    
-
- # Server Port Table
+## Step8. Install Pytorch
+```
+$pip install torch==1.2.0 torchvision==0.4.0 -f https://download.pytorch.org/whl/torch_stable.html
+```
+# Server Port Table
  |   Server IP   |    Port    |    Owner   |   Public  |
  |---------------|------------|------------|-----------|
  |192.168.50.113 |    33010   |    None    |Yes
